@@ -1,0 +1,39 @@
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    margin-top: 200px;
+  }
+  
+  .product {
+    flex: 0 1 calc(25% - 20px); 
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+  }
+  
+  .product img {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .product-details {
+    margin-top: 10px;
+    color: black;
+
+  }
+
+.product-video {
+    display: flex;
+    justify-content: center;
+}
+
+.product-video video {
+ width: 1500px;
+ height: 1000px;
+}
+  
+  
+  

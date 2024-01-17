@@ -1,0 +1,20 @@
+.my-footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.my-footer .list1 ul,
+.my-footer .list2 ul,
+.my-footer .list3 ul {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    list-style-type:none ;
+}
