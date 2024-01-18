@@ -140,12 +140,6 @@ export default function About({ handlePageChange }) {
           box-sizing: border-box;
         }
 
-        .logo a {
-          text-decoration: none;
-          color: #fff;
-          margin-left: 15px;
-        }
-
         .pages {
           display: flex;
           align-items: center;

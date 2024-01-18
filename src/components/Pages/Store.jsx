@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductVideo from "../Assets/Images/Desktop.mp4";
 
-const Store = (props) => {
+const Product = (props) => {
   return (
     <div className="product">
       <img src={props.image} alt="" width="403px" height="648px" />
@@ -20,7 +20,9 @@ const Store = (props) => {
   );
 };
 
-const ProductList = () => {
+const Store = ({ handlePageChange }) => {
+  handlePageChange("Store");
+
   const [data, setData] = useState([]);
   const [selectedType, setSelectedType] = useState(""); //this handles the selectedType in my database
   const [selectedSort, setSelectedSort] = useState("");
@@ -88,7 +90,7 @@ const ProductList = () => {
       </div>
       <div className="product-container">
         {filteredData.map((product) => (
-          <Store
+          <Product
             key={product.idProducts}
             name={product.name}
             price={product.price}
@@ -171,4 +173,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default Store;

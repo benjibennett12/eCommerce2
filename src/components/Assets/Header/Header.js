@@ -8,7 +8,7 @@ export default function Header({ activeSlideIndex , activePage }) {
     setMenuOpen(!menuOpen);
   };
 
-  let logoStyle = "white";
+  let logoStyle = "";
   if (activePage === "home") {
     console.log("activeSlideIndex:", activeSlideIndex);
     switch (activeSlideIndex) {
@@ -25,17 +25,18 @@ export default function Header({ activeSlideIndex , activePage }) {
   } else {
     console.log("activePage:", activePage);
     switch (activePage) {
-      case "/About":
+      case "About":
         logoStyle = "black";
         break;
-      case "/Store":
+      case "Store":
         logoStyle = "black";
         break;
-      case "/Contact":
+      case "Contact":
         logoStyle = "black";
         break;
       default:
-        logoStyle = "white";
+        logoStyle = "black";
+        
     }
   }
 
@@ -124,7 +125,6 @@ export default function Header({ activeSlideIndex , activePage }) {
  }
  nav {
      width: 100%;
-     height: 60px;
      display: flex;
      justify-content: space-between;
      align-items: center;
@@ -132,6 +132,7 @@ export default function Header({ activeSlideIndex , activePage }) {
      top: 0;
      padding: 8px 0;
      z-index: 2;
+     background-color: ${activePage === "home" ? "transparent" : "white"}
  }
  
  #highlight {
@@ -144,11 +145,11 @@ export default function Header({ activeSlideIndex , activePage }) {
      text-decoration: none;
      margin-left: 15px;
      font-family: OPTI;
+     color: ${logoStyle}
     }
-    .logo {
-      padding: 40px;
-      margin-top: 16px;
- }
+  .logo h1 {
+    margin: 0;
+  }
  
  
  .search-container {
@@ -203,10 +204,7 @@ export default function Header({ activeSlideIndex , activePage }) {
      display: none;
    }
  
-   .bm-menu {
-     width: 80% !important;
-     height: 80% !important;
-   }
+
  
    @media screen and (min-width: 769px) {
  
