@@ -25,9 +25,9 @@ function App() {
         <Header activeSlideIndex={activateSlide}  activePage={activePage}/>
         <Routes>
           <Route path="/" element={<Home handleSlideChange={handleSlideChange} />} />
-          <Route path="/About" element={<About handPageChange={handlePageChange} />} />
-          <Route path="/Store" element={<Store handPageChange={handlePageChange}/>} />
-          <Route path="/Contact" element={<Contact handPageChange={handlePageChange}/>} />
+          <Route path="/About" element={<About handlePageChange={handlePageChange} />} />
+          <Route path="/Store" element={<Store handlePageChange={handlePageChange}/>} />
+          <Route path="/Contact" element={<Contact handlePageChange={handlePageChange}/>} />
         </Routes>
         <Footer />
       </Router>

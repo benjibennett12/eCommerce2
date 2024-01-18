@@ -77,7 +77,7 @@ export default function Header({ activeSlideIndex , activePage }) {
 
       <header>
         <nav>
-        <div className="logo" style={{ color: logoStyle }}>
+        <div className="logo">
             <h1>
               <a href="/">
                 <span id="highlight">M</span>onochrome
@@ -131,7 +131,6 @@ export default function Header({ activeSlideIndex , activePage }) {
      position: fixed;
      top: 0;
      padding: 8px 0;
-     /* background-color: black; */
      z-index: 2;
  }
  
@@ -139,19 +138,16 @@ export default function Header({ activeSlideIndex , activePage }) {
      font-weight: bolder;
      font-size: 90px;
      font-family: OPTI;
-     /* color: darkgrey; */
  }
  
  .logo a {
      text-decoration: none;
-     color: ${logoStyle};
      margin-left: 15px;
      font-family: OPTI;
     }
     .logo {
       padding: 40px;
       margin-top: 16px;
-      color: black;
  }
  
  
