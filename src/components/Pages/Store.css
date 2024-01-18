@@ -2,8 +2,9 @@
 .product-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; 
+    justify-content: space-evenly; 
     margin-top: 200px;
+    gap: 10px;
   }
   
   .product {
@@ -12,7 +13,22 @@
     padding: 10px;
     margin: 10px;
     text-align: center;
+    position: relative;
+    display: inline-block;
   }
+
+  .hover-image {
+    position: absolute;
+    top: 0;
+    left: 2;
+    opacity: 0;
+    margin: 0 auto;
+    transition: opacity 0.5s ease;
+  }
+
+  .product:hover .hover-image {
+    opacity: 1;
+}
   
   .product img {
     display: block;
@@ -22,17 +38,25 @@
   .product-details {
     margin-top: 10px;
     color: black;
+    display: flex;
 
   }
 
 .product-video {
     display: flex;
     justify-content: center;
+    margin-top: 75px;
 }
 
 .product-video video {
  width: 1500px;
  height: 1000px;
+}
+
+.drop-down-menus {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
 }
   
   

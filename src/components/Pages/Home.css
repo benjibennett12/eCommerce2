@@ -29,6 +29,11 @@
   color: whitesmoke;
 }
 
+.product-header h1 {
+  color: black;
+  border-bottom:  1rem solid;
+}
+
 
 
   @media screen and (max-width: 1500px) {

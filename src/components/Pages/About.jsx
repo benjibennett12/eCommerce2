@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect} from 'react'
 import '/Users/benjibennett/E-commerce Part 2/ecommerce2/src/components/Pages/About.css'
 import ImageHero from '/Users/benjibennett/E-commerce Part 2/ecommerce2/src/components/Assets/Images/download.png'
 import Image2 from '/Users/benjibennett/E-commerce Part 2/ecommerce2/src/components/Assets/Images/_ (2).jpeg'
 
-export default function About() {
+export default function About({ handPageChange }) {
+  useEffect(() => {
+    handPageChange('About');
+  }, []);
   return (
     <div>
       <>
