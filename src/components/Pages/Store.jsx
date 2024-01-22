@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ProductVideo from "../Assets/Images/Desktop.mp4";
+import ReactModal from "react-modal";
 
 const Product = (props) => {
   return (
-    <div className="product">
+    <div className="product" onClick={props.onClick}>
       <img src={props.image} alt="" width="403px" height="648px" />
       <img
         className="hover-image"
@@ -13,19 +14,40 @@ const Product = (props) => {
         height="648px"
       />
       <div className="product-details">
-        <span>{props.name}</span>
-        <span>${props.price}</span>
+        <div className="name&price">
+          <span>{props.name}</span>
+          <span>${props.price}</span>
+        </div>
+        <span>{props.description}</span>
       </div>
     </div>
   );
 };
 
-const Store = ({ handlePageChange }) => {
+const Store = ({ handlePageChange, onAddToCart }) => {
   handlePageChange("Store");
 
   const [data, setData] = useState([]);
-  const [selectedType, setSelectedType] = useState(""); //this handles the selectedType in my database
+  const [selectedType, setSelectedType] = useState("");
   const [selectedSort, setSelectedSort] = useState("");
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  // const fetchCart = () => {
+  //   commerce.cart
+  //     .retrieve()
+  //     .then((cart) => {
+  //       setCart(cart);
+  //     })
+  //     .catch((error) => {
+  //       console.log("There was an error fetching the cart", error);
+  //     });
+  // };
+
+  const handleClickProduct = (product) => {
+    setSelectedProduct(product);
+    setModalOpen(true);
+  };
 
   useEffect(() => {
     fetch("http://localhost:8000/Products")
@@ -34,6 +56,11 @@ const Store = ({ handlePageChange }) => {
       .catch((err) => console.log(err));
   }, []);
 
+  // useEffect(() => {
+  //   fetchProducts();
+  //   fetchCart();
+  // }, []);
+
   const handleTypeChange = (event) => {
     //event.target  gives you the element that triggered the event and value retrieves the value of that element
     setSelectedType(event.target.value);
@@ -41,6 +68,11 @@ const Store = ({ handlePageChange }) => {
 
   const handleSortChange = (event) => {
     setSelectedSort(event.target.value);
+  };
+
+  const handleAddToCart = (product) => {
+    onAddToCart(product);
+    setModalOpen(false);
   };
 
   const filteredData = selectedType //this will be used to have a selectedType from my dropdown and based off the selectedType will create a new array of my products based off the selectedType
@@ -96,19 +128,44 @@ const Store = ({ handlePageChange }) => {
             price={product.price}
             image={product.Image}
             image2={product.image2}
+            onClick={() => handleClickProduct(product)}
           />
         ))}
       </div>
-      {/* <div className="product-container">
-        {sortedData.map((product) => (
-          <Store
-            key={product.idProducts}
-            name={product.name}
-            price={product.price}
-            image={product.Image}
-          />
-        ))}
-      </div> */}
+      <div className="Modaldisplay">
+        <ReactModal
+          isOpen={isModalOpen}
+          onRequestClose={() => setModalOpen(false)}
+          className="modal-content"
+          overlayClassName="modal-overlay"
+        >
+          {selectedProduct && (
+            <div className="modal-container">
+              <Product
+                name={selectedProduct.name}
+                price={selectedProduct.price}
+                image={selectedProduct.Image}
+                image2={selectedProduct.image2}
+              />
+              <div className="modal-description">
+                {selectedProduct.description}
+                <button
+                  className="aocBtn"
+                  onClick={() => handleAddToCart(selectedProduct)}
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <button
+                className="close-button"
+                onClick={() => setModalOpen(false)}
+              >
+                X
+              </button>
+            </div>
+          )}
+        </ReactModal>
+      </div>
       <style jsx>{`
         .product-container {
           display: flex;
@@ -167,6 +224,81 @@ const Store = ({ handlePageChange }) => {
           display: flex;
           justify-content: space-evenly;
           width: 100%;
+        }
+
+        .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.5);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .modal-content {
+          background-color: white;
+          padding: 20px;
+          border-radius: 5px;
+          width: 800px;
+          height: 500px;
+        }
+
+        .modal-content img {
+          width: 200px;
+          height: 325px;
+        }
+
+        .modal-content .product-details {
+          margin-top: 10px;
+          color: black;
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .modal-container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+        }
+        .modal-description,
+        .aocBtn {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .aocBtn {
+          margin-top: 90px;
+          background-color: #4caf50;
+          border: none;
+          color: black;
+          padding: 10px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          cursor: pointer;
+          border-radius: 5px;
+          transition: background-color 0.3s ease;
+        }
+
+        .aocBtn:hover {
+          background-color: #45a049;
+        }
+        .close-button {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
+        .name&price {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .ReactModal__Content ReactModal__Content--after-open modal-content {
         }
       `}</style>
     </div>

@@ -188,6 +188,7 @@ export default function About({ handlePageChange }) {
           align-items: center;
           height: 100vh;
           background-color: #f0f0f0;
+          margin-top: 100px;
         }
 
         .section1-5 {
