@@ -17,7 +17,7 @@ export default function About({ handlePageChange }) {
                   Five iconic pieces. Five design principles. Introducing COS’
                   signature styles of the season.
                 </p>
-                <img src={ImageHero} alt="hero" width=" 1500" height="1000" />
+                <img src={ImageHero} alt="hero" />
               </div>
             </div>
           </section>
@@ -135,7 +135,6 @@ export default function About({ handlePageChange }) {
           margin: 0;
           padding: 0;
           background-color: #fff;
-          font-family: "Courier New", Courier, monospace;
           color: black;
           box-sizing: border-box;
         }
@@ -230,6 +229,12 @@ export default function About({ handlePageChange }) {
           font-size: 18px;
           color: black;
           margin-bottom: 24px;
+        }
+
+        .center-content img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
 
         .button {
@@ -342,6 +347,46 @@ export default function About({ handlePageChange }) {
         .section3 h1 {
           text-align: center;
           align-items: center;
+        }
+        @media screen and (max-width: 768px) {
+          .content,
+          .image {
+            width: 100%;
+            margin: 0;
+          }
+
+          .content p {
+            margin-left: 0;
+          }
+
+          .parent {
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(1, 1fr);
+          }
+        }
+
+        @media screen and (max-width: 598px) {
+          .section2 {
+            display: flex;
+            flex-direction: column-reverse;
+            font-size: 10px;
+          }
+
+          .section2 .image img {
+            display: flex;
+            justify-content: center;
+            width: 50%;
+            max-width: 100%; /* Adjust this based on your design */
+            height: auto;
+          }
+
+          .image img {
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto; /* Adjust margin if needed */
+            margin-right: auto; /* Adjust margin if needed */
+            height: auto;
+          }
         }
       `}</style>
     </div>

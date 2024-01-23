@@ -21,13 +21,14 @@ export default function Header({
   };
 
   const calculateTotal = () => {
-    return cartItems.reduce(
-      (accumulator, currentValue) => accumulator + currentValue,
+    const total = cartItems.reduce(
+      (accumulator, currentItem) => accumulator + currentItem.price,
       0
     );
+    return total.toFixed(2);
   };
 
-  const deleteTask = (id) => {
+  const deleteCartItem = (id) => {
     const updatedList = cartItems.filter((item) => item.id !== id);
     setCartItems(updatedList);
     console.log(id);
@@ -93,7 +94,11 @@ export default function Header({
               Contact Us
             </a>
           </li>
-          <button className="btn1">Sign Up</button>
+          <button className="btn1">
+            <a href="/Contact" className="nav-item">
+              About Us
+            </a>
+          </button>
           <button className="btn2">Log In</button>
         </ul>
       </Menu>
@@ -170,11 +175,13 @@ export default function Header({
                   <div key={item.id} className="cart-item">
                     <div className="item-name">{item.name}</div>
                     <div className="item-price">${item.price}</div>
-                    <button onClick={() => deleteTask(item.id)}>X</button>
+                    <button onClick={() => deleteCartItem(item.id)}>X</button>
                   </div>
                 ))}
               </div>
-              <div className="total-amount">Total:{calculateTotal}</div>
+              <div className="total-amount">
+                Total: ${parseFloat(calculateTotal())}
+              </div>
               <button
                 className="close-button"
                 onClick={() => setCartOpen(false)}
@@ -193,9 +200,8 @@ export default function Header({
           height: 100%;
           margin: 0;
           padding: 0;
-          font-family: "Courier New", Courier, monospace;
           box-sizing: border-box;
-          font-family: "optibodoni-antiquaregular", sans-serif;
+          font-family: "Bodoni Moda", serif;
         }
         nav {
           width: 100%;

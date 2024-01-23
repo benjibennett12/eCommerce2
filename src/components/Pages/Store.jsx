@@ -50,7 +50,7 @@ const Store = ({ handlePageChange, onAddToCart }) => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8000/Products")
+    fetch("https://ecomv2-3ycx.onrender.com/Products")
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((err) => console.log(err));
