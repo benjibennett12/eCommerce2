@@ -20,8 +20,13 @@ function App() {
 
   const [cartItems, setCartItems] = useState([]);
 
+  const generateUniqueId = () => {
+    return Math.random().toString(36).substr(2, 9);
+  };
+
   const handleAddToCart = (product) => {
-    setCartItems((prevItems) => [...prevItems, product]);
+    const newItem = { ...product, id: generateUniqueId() };
+    setCartItems((prevItems) => [...prevItems, newItem]);
   };
 
   return (

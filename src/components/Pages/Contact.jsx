@@ -176,6 +176,9 @@ export default function Contact({ handlePageChange }) {
           display: flex;
           height: auto;
         }
+        .bm-menu-wrap MenuClass {
+          z-index: -1; !important
+        }
 
         .contact-left {
           flex-basis: 50%;

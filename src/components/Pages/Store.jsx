@@ -33,33 +33,20 @@ const Store = ({ handlePageChange, onAddToCart }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // const fetchCart = () => {
-  //   commerce.cart
-  //     .retrieve()
-  //     .then((cart) => {
-  //       setCart(cart);
-  //     })
-  //     .catch((error) => {
-  //       console.log("There was an error fetching the cart", error);
-  //     });
-  // };
 
-  const handleClickProduct = (product) => {
+
+  const handleClickProduct = (product) => { //handles and triggers the modal for all the products from my database
     setSelectedProduct(product);
     setModalOpen(true);
   };
 
-  useEffect(() => {
+  useEffect(() => { //Handles my fetch request from the API I made for my database information
     fetch("https://ecomv2-3ycx.onrender.com/Products")
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((err) => console.log(err));
   }, []);
 
-  // useEffect(() => {
-  //   fetchProducts();
-  //   fetchCart();
-  // }, []);
 
   const handleTypeChange = (event) => {
     //event.target  gives you the element that triggered the event and value retrieves the value of that element
